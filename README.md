@@ -1,54 +1,11 @@
 # ULTIMATE-FARM
 ESTE SCRIPT ES PARA UN JUEGO BUENO +1 SPEED FOR CROWNS 
 --[[
-╔══════════════════════════════════════════════════════════════════════════╗
-║                                                                          ║
-║              🚀 ULTIMATE FARM v5.1 - SCRIPT HUB PROFESIONAL             ║
-║                                                                          ║
-║  ═══════════════════════════════════════════════════════════════════════  ║
-║                                                                          ║
-║  🔥 FUNCIONES 100% REALES Y FUNCIONALES:                                ║
-║                                                                          ║
-║  📡 TELEPORT AUTOMÁTICO  → Te teletransporta a Zona-12 cada milisegundo ║
-║  👻 INVISIBILIDAD TOTAL  → Nadie te ve (jugadores y NPCs)               ║
-║  🏃 AUTO-TREADMILL      → Corre en la cinta para ganar velocidad REAL   ║
-║  👥 CLON FARM x2        → Crea 2 clones que farmean coronas por ti      ║
-║  🛡️ ANTI-AFK            → Evita que te desconecten por inactividad      ║
-║                                                                          ║
-║  ═══════════════════════════════════════════════════════════════════════  ║
-║                                                                          ║
-║  📌 CONTROLES RÁPIDOS:                                                   ║
-║  T = Teleport  |  I = Invisible  |  R = Treadmill                       ║
-║  C = Clon Farm  |  A = Anti-AFK                                         ║
-║                                                                          ║
-║  ═══════════════════════════════════════════════════════════════════════  ║
-║                                                                          ║
-║  🔧 INSTRUCCIONES DE INSTALACIÓN:                                        ║
-║  1. Copia todo este script                                              ║
-║  2. Pégalo en tu ejecutor (Delta, Synapse, KRNL, etc.)                  ║
-║  3. Ejecuta y espera a que cargue                                       ║
-║  4. Usa las teclas o los botones de la GUI                              ║
-║  5. ¡Disfruta del farm automático!                                      ║
-║                                                                          ║
-║  ═══════════════════════════════════════════════════════════════════════  ║
-║                                                                          ║
-║  📝 CRÉDITOS:                                                            ║
-║  Script creado por: Rivalsteam73                                        ║
-║  Versión: v5.1                                                          ║
-║  Fecha: 2026                                                            ║
-║                                                                          ║
-║  ═══════════════════════════════════════════════════════════════════════  ║
-║                                                                          ║
-║  ⚠️ DISCLAIMER:                                                          ║
-║  Este script es para uso educativo. No nos hacemos responsables         ║
-║  del mal uso que se le pueda dar. Úsalo con responsabilidad.            ║
-║                                                                          ║
-╚══════════════════════════════════════════════════════════════════════════╝
+  ULTIMATE FARM v5.1 - FULL GUI PARA MÓVIL
+  Script optimizado para Delta móvil
+  Funciones: Teleport, Invisible, Treadmill, Clon Farm, Anti-AFK
 --]]
 
--- ============================================================
--- CONFIGURACIÓN INICIAL
--- ============================================================
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Workspace = game:GetService("Workspace")
@@ -59,7 +16,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 -- ============================================================
--- BUSCAR ZONA-12 Y ELEMENTOS
+-- BUSCAR ZONA-12
 -- ============================================================
 local zonas = Workspace:FindFirstChild("Zonas")
 local zona12 = zonas and zonas:FindFirstChild("Zona-12")
@@ -67,7 +24,6 @@ local partCorona = nil
 local treadmillPart = nil
 
 if zona12 then
-    -- Buscar parte de coronas
     partCorona = zona12:FindFirstChild("Part")
     if not partCorona then
         for _, child in ipairs(zona12:GetChildren()) do
@@ -89,7 +45,6 @@ if zona12 then
         end
     end
     
-    -- Buscar cinta de correr
     for _, child in ipairs(zona12:GetDescendants()) do
         if child:IsA("BasePart") then
             local name = child.Name:lower()
@@ -128,7 +83,6 @@ local clones = {}
 -- FUNCIONES PRINCIPALES
 -- ============================================================
 
--- TELEPORT
 local function teleportToZona12()
     if not partCorona then return false end
     local char = LocalPlayer.Character
@@ -441,7 +395,7 @@ local function toggleClon()
 end
 
 -- ============================================================
--- CREAR GUI
+-- CREAR GUI COMPLETA PARA MÓVIL
 -- ============================================================
 
 local screenGui = Instance.new("ScreenGui")
@@ -449,17 +403,17 @@ screenGui.Name = "UltimateFarm"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = PlayerGui
 
+-- FRAME PRINCIPAL
 local mainFrame = Instance.new("Frame")
 mainFrame.Parent = screenGui
-mainFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 18)
-mainFrame.BackgroundTransparency = 0.05
+mainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 25)
+mainFrame.BackgroundTransparency = 0.1
 mainFrame.BorderSizePixel = 0
-mainFrame.Position = UDim2.new(0.82, -150, 0.2, 0)
-mainFrame.Size = UDim2.new(0, 300, 0, 430)
+mainFrame.Position = UDim2.new(0.5, -160, 0.1, 0)
+mainFrame.Size = UDim2.new(0, 320, 0, 480)
 mainFrame.ClipsDescendants = true
-mainFrame.Active = true
-mainFrame.Draggable = true
 
+-- BORDE DORADO
 local border = Instance.new("Frame")
 border.Parent = mainFrame
 border.BackgroundColor3 = Color3.fromRGB(255, 215, 0)
@@ -467,48 +421,64 @@ border.BackgroundTransparency = 0.9
 border.BorderSizePixel = 0
 border.Size = UDim2.new(1, 0, 0, 2)
 
+-- TÍTULO
 local title = Instance.new("TextLabel")
 title.Parent = mainFrame
-title.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+title.BackgroundColor3 = Color3.fromRGB(25, 25, 50)
 title.BorderSizePixel = 0
-title.Size = UDim2.new(1, 0, 0, 36)
+title.Size = UDim2.new(1, 0, 0, 45)
 title.Font = Enum.Font.GothamBold
 title.Text = "👑 ULTIMATE FARM v5.1"
 title.TextColor3 = Color3.fromRGB(255, 215, 0)
-title.TextSize = 16
+title.TextSize = 18
 
+-- SUBTÍTULO
+local subtitle = Instance.new("TextLabel")
+subtitle.Parent = mainFrame
+subtitle.BackgroundTransparency = 1
+subtitle.Position = UDim2.new(0, 0, 0, 40)
+subtitle.Size = UDim2.new(1, 0, 0, 20)
+subtitle.Font = Enum.Font.Gotham
+subtitle.Text = "🔥 Toca los botones para activar"
+subtitle.TextColor3 = Color3.fromRGB(150, 150, 200)
+subtitle.TextSize = 12
+subtitle.TextScaled = true
+
+-- INFO PANEL
 local infoFrame = Instance.new("Frame")
 infoFrame.Parent = mainFrame
-infoFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 30)
+infoFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 35)
 infoFrame.BackgroundTransparency = 0.5
 infoFrame.BorderSizePixel = 0
-infoFrame.Position = UDim2.new(0, 10, 0, 42)
-infoFrame.Size = UDim2.new(1, -20, 0, 80)
+infoFrame.Position = UDim2.new(0, 10, 0, 60)
+infoFrame.Size = UDim2.new(1, -20, 0, 85)
 
+-- CORONAS
 local coronaLabel = Instance.new("TextLabel")
 coronaLabel.Parent = infoFrame
 coronaLabel.BackgroundTransparency = 1
-coronaLabel.Position = UDim2.new(0, 10, 0, 8)
-coronaLabel.Size = UDim2.new(1, -20, 0, 22)
+coronaLabel.Position = UDim2.new(0, 10, 0, 5)
+coronaLabel.Size = UDim2.new(1, -20, 0, 25)
 coronaLabel.Font = Enum.Font.GothamBold
 coronaLabel.Text = "👑 " .. tostring(coronas.Value)
 coronaLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
-coronaLabel.TextSize = 16
+coronaLabel.TextSize = 18
 coronaLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 coronas.Changed:Connect(function()
     coronaLabel.Text = "👑 " .. tostring(coronas.Value)
 end)
 
+-- SPEED
 local speedLabel = Instance.new("TextLabel")
 speedLabel.Parent = infoFrame
 speedLabel.BackgroundTransparency = 1
-speedLabel.Position = UDim2.new(0, 10, 0, 34)
-speedLabel.Size = UDim2.new(1, -20, 0, 18)
+speedLabel.Position = UDim2.new(0, 10, 0, 32)
+speedLabel.Size = UDim2.new(1, -20, 0, 20)
 speedLabel.Font = Enum.Font.Gotham
 speedLabel.Text = progresoSpeed and ("⚡ " .. tostring(progresoSpeed.Value) .. "/" .. tostring(metaSpeed.Value)) or "⚡ N/A"
 speedLabel.TextColor3 = Color3.fromRGB(100, 200, 255)
-speedLabel.TextSize = 13
+speedLabel.TextSize = 14
 speedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 if progresoSpeed then
@@ -520,38 +490,41 @@ if progresoSpeed then
     end)
 end
 
+-- ZONA ESTADO
 local statusLabel = Instance.new("TextLabel")
 statusLabel.Parent = infoFrame
 statusLabel.BackgroundTransparency = 1
-statusLabel.Position = UDim2.new(0, 10, 0, 56)
-statusLabel.Size = UDim2.new(1, -20, 0, 16)
+statusLabel.Position = UDim2.new(0, 10, 0, 54)
+statusLabel.Size = UDim2.new(1, -20, 0, 18)
 statusLabel.Font = Enum.Font.Gotham
 statusLabel.Text = partCorona and "✅ Zona-12: OK" or "❌ Zona-12: NO"
 statusLabel.TextColor3 = partCorona and Color3.fromRGB(100, 255, 100) or Color3.fromRGB(255, 100, 100)
-statusLabel.TextSize = 11
+statusLabel.TextSize = 12
 statusLabel.TextXAlignment = Enum.TextXAlignment.Left
 
+-- CLONES
 local clonesLabel = Instance.new("TextLabel")
 clonesLabel.Parent = infoFrame
 clonesLabel.BackgroundTransparency = 1
 clonesLabel.Position = UDim2.new(0, 10, 0, 72)
-clonesLabel.Size = UDim2.new(1, -20, 0, 16)
+clonesLabel.Size = UDim2.new(1, -20, 0, 18)
 clonesLabel.Font = Enum.Font.Gotham
 clonesLabel.Text = "👥 Clones: 0"
 clonesLabel.TextColor3 = Color3.fromRGB(100, 255, 200)
-clonesLabel.TextSize = 11
+clonesLabel.TextSize = 12
 clonesLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 local function updateClonesLabel()
     clonesLabel.Text = "👥 Clones: " .. tostring(#clones)
 end
 
+-- BOTONES
 local buttons = {
-    {text = "📡 TELEPORT", key = "T", color = Color3.fromRGB(0, 150, 255), toggle = "teleport"},
-    {text = "👻 INVISIBLE", key = "I", color = Color3.fromRGB(180, 50, 220), toggle = "invisible"},
-    {text = "🏃 TREADMILL", key = "R", color = Color3.fromRGB(0, 200, 150), toggle = "treadmill"},
-    {text = "👥 CLON FARM x2", key = "C", color = Color3.fromRGB(0, 200, 100), toggle = "clon"},
-    {text = "🛡️ ANTI-AFK", key = "A", color = Color3.fromRGB(100, 100, 200), toggle = "antiAFK"}
+    {text = "📡 TELEPORT", toggle = "teleport", color = Color3.fromRGB(0, 150, 255)},
+    {text = "👻 INVISIBLE", toggle = "invisible", color = Color3.fromRGB(180, 50, 220)},
+    {text = "🏃 TREADMILL", toggle = "treadmill", color = Color3.fromRGB(0, 200, 150)},
+    {text = "👥 CLON FARM", toggle = "clon", color = Color3.fromRGB(0, 200, 100)},
+    {text = "🛡️ ANTI-AFK", toggle = "antiAFK", color = Color3.fromRGB(100, 100, 200)}
 }
 
 local btnObjects = {}
@@ -562,12 +535,12 @@ for i, btnData in ipairs(buttons) do
     btn.BackgroundColor3 = btnData.color
     btn.BackgroundTransparency = 0.85
     btn.BorderSizePixel = 0
-    btn.Position = UDim2.new(0, 10, 0, 132 + (i-1) * 38)
-    btn.Size = UDim2.new(1, -20, 0, 30)
+    btn.Position = UDim2.new(0, 10, 0, 155 + (i-1) * 42)
+    btn.Size = UDim2.new(1, -20, 0, 36)
     btn.Font = Enum.Font.GothamBold
     btn.Text = btnData.text .. " [OFF]"
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    btn.TextSize = 12
+    btn.TextSize = 14
     btnObjects[btnData.toggle] = btn
     
     btn.MouseButton1Click:Connect(function()
@@ -589,17 +562,18 @@ for i, btnData in ipairs(buttons) do
     end)
 end
 
+-- BOTÓN CERRAR
 local closeBtn = Instance.new("TextButton")
 closeBtn.Parent = mainFrame
 closeBtn.BackgroundColor3 = Color3.fromRGB(200, 40, 40)
 closeBtn.BackgroundTransparency = 0.8
 closeBtn.BorderSizePixel = 0
-closeBtn.Position = UDim2.new(1, -32, 0, 4)
-closeBtn.Size = UDim2.new(0, 24, 0, 24)
+closeBtn.Position = UDim2.new(1, -35, 0, 5)
+closeBtn.Size = UDim2.new(0, 30, 0, 30)
 closeBtn.Font = Enum.Font.GothamBold
 closeBtn.Text = "✕"
 closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeBtn.TextSize = 14
+closeBtn.TextSize = 16
 
 closeBtn.MouseButton1Click:Connect(function()
     for toggle, btn in pairs(btnObjects) do
@@ -609,23 +583,6 @@ closeBtn.MouseButton1Click:Connect(function()
     end
     destroyAllClones()
     screenGui:Destroy()
-end)
-
--- ============================================================
--- ATAJOS DE TECLADO
--- ============================================================
-UserInputService.InputBegan:Connect(function(input)
-    local map = {
-        [Enum.KeyCode.T] = "teleport",
-        [Enum.KeyCode.I] = "invisible",
-        [Enum.KeyCode.R] = "treadmill",
-        [Enum.KeyCode.C] = "clon",
-        [Enum.KeyCode.A] = "antiAFK"
-    }
-    local toggle = map[input.KeyCode]
-    if toggle and btnObjects[toggle] then
-        btnObjects[toggle].MouseButton1Click:Fire()
-    end
 end)
 
 -- ============================================================
@@ -658,13 +615,12 @@ end)
 -- INICIALIZACIÓN
 -- ============================================================
 print("╔════════════════════════════════════════════════════╗")
-print("║     👑 ULTIMATE FARM v5.1 CARGADO 👑              ║")
+print("║     👑 ULTIMATE FARM v5.1 - MÓVIL CARGADO 👑      ║")
 print("╠════════════════════════════════════════════════════╣")
-print("║  📡 T = Teleport                                 ║")
-print("║  👻 I = Invisible Total                          ║")
-print("║  🏃 R = Auto-Treadmill                          ║")
-print("║  👥 C = Clon Farm x2                            ║")
-print("║  🛡️ A = Anti-AFK                                ║")
+print("║  📌 Toca los botones en pantalla                  ║")
+print("║  📡 TELEPORT  |  👻 INVISIBLE                    ║")
+print("║  🏃 TREADMILL |  👥 CLON FARM                   ║")
+print("║  🛡️ ANTI-AFK                                    ║")
 print("║                                                 ║")
 print("║  👑 Coronas: " .. tostring(coronas.Value))
 if progresoSpeed then
